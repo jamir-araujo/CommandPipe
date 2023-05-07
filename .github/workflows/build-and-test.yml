@@ -30,13 +30,13 @@ jobs:
       run: dotnet restore
     - name: Build
       run: |
-        dotnet build --no-restore /
-        -p:Version=$Version /
-        -p:PackageVersion=$NuGetPackageVersion /
-        -p:AssemblyVersion=$AssemblyVersion /
-        -p:FileVersion=$Version /
-        -p:AssemblyFileVersion=$AssemblyFileVersion /
-        -p:AssemblyInformationalVersion=$AssemblyInformationalVersion /
+        dotnet build --no-restore \
+        -p:Version=$Version \
+        -p:PackageVersion=$NuGetPackageVersion \
+        -p:AssemblyVersion=$AssemblyVersion \
+        -p:FileVersion=$Version \
+        -p:AssemblyFileVersion=$AssemblyFileVersion \
+        -p:AssemblyInformationalVersion=$AssemblyInformationalVersion \
     - name: Test
       run: dotnet test --no-build --verbosity normal
     
