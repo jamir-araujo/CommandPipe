@@ -18,6 +18,10 @@ jobs:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0 # avoid shallow clone so nbgv can do its work.
+    - name: Nerdbank.GitVersioning
+      uses: dotnet/nbgv@v0.4.0
+      with:
+        setAllVars: true   
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
@@ -25,11 +29,7 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore -p:Version=$Version -p:PackageVersion=$NuGetPackageVersion -p:AssemblyVersion=$AssemblyVersion -p:FileVersion=$Version -p:AssemblyFileVersion=$AssemblyFileVersion -p:AssemblyInformationalVersion=$AssemblyInformationalVersion
     - name: Test
       run: dotnet test --no-build --verbosity normal
-    - name: Nerdbank.GitVersioning
-      uses: dotnet/nbgv@v0.4.0
-      with:
-        # The path to a file whose version setting should be changed to match the computed version. Supported file types: `package.json`.
-        stamp: version.json
+    
