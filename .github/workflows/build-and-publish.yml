@@ -4,9 +4,7 @@
 name: Build, Test & Publish
 
 on:
-  push:
-    branches: [ "master" ]
-  pull_request:
+  workflow_run:
     branches: [ "master" ]
 
 jobs:
