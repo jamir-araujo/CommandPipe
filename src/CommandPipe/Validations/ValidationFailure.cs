@@ -42,7 +42,7 @@ namespace CommandPipe.Validations
         public string PropertyName { get; set; }
 
         /// <summary>
-        /// Gets the extension itens for this validation
+        /// Gets the extension items for this validation
         /// </summary>
         public IDictionary<string, object> Items { get; } = new Dictionary<string, object>();
     }
