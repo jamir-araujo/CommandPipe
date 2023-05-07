@@ -36,7 +36,14 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: pack
-      run: dotnet pack --include-symbols --include-source -o packages
+      run: | 
+        dotnet pack --include-symbols --include-source -o packages \
+        -p:Version=$Version \
+        -p:PackageVersion=$NuGetPackageVersion \
+        -p:AssemblyVersion=$AssemblyVersion \
+        -p:FileVersion=$Version \
+        -p:AssemblyFileVersion=$AssemblyFileVersion \
+        -p:AssemblyInformationalVersion=$AssemblyInformationalVersion \
     - name: upload packages
       uses: actions/upload-artifact@v3
       with:
@@ -46,7 +53,7 @@ jobs:
       env: # Or as an environment variable
         super_secret: ${{ secrets.NUGET_KEY }}
       run: echo ${super_secret}
-    #- name: push to NuGet
-    #  env:
-    #    nuget_key: ${{ secrets.NUGET_KEY }}
-    #  run: dotnet nuget push --api-key ${nuget_key}
+    - name: push to NuGet
+      env:
+        nuget_key: ${{ secrets.NUGET_KEY }}
+      run: dotnet nuget push --api-key ${nuget_key}
