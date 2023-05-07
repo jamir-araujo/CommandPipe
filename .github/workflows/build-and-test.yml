@@ -29,7 +29,8 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore /
+      run: |
+        dotnet build --no-restore /
         -p:Version=$Version /
         -p:PackageVersion=$NuGetPackageVersion /
         -p:AssemblyVersion=$AssemblyVersion /
