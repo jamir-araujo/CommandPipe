@@ -35,3 +35,10 @@ jobs:
         -p:AssemblyInformationalVersion=$AssemblyInformationalVersion \
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: pack
+      run: dotnet pack --include-symbols --include-source -o packages
+    - name: upload packages
+      uses: actions/upload-artifact@v3
+      with:
+        name: code-coverage-report
+        path: packages/*
