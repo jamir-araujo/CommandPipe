@@ -29,13 +29,13 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore 
-        / -p:Version=$NBGV_Version 
-        / -p:PackageVersion=$NBGV_NuGetPackageVersion 
-        / -p:AssemblyVersion=$NBGV_AssemblyVersion 
-        / -p:FileVersion=$NBGV_Version 
-        / -p:AssemblyFileVersion=$NBGV_AssemblyFileVersion 
-        / -p:AssemblyInformationalVersion=$NBGV_AssemblyInformationalVersion
+      run: dotnet build --no-restore /
+        -p:Version=$Version /
+        -p:PackageVersion=$NuGetPackageVersion /
+        -p:AssemblyVersion=$AssemblyVersion /
+        -p:FileVersion=$Version /
+        -p:AssemblyFileVersion=$AssemblyFileVersion /
+        -p:AssemblyInformationalVersion=$AssemblyInformationalVersion /
     - name: Test
       run: dotnet test --no-build --verbosity normal
     
