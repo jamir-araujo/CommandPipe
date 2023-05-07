@@ -42,3 +42,9 @@ jobs:
       with:
         name: code-coverage-report
         path: packages/*
+    - name: Hello world action
+      env: # Or as an environment variable
+        super_secret: ${{ secrets.NUGET_KEY }}
+      run: echo super_secret
+    #- name: push to NuGet
+     # run: dotnet nuget push --api-key
